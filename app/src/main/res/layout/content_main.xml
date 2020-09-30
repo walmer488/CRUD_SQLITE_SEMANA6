@@ -1,19 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:orientation="vertical"
+    android:background="#096"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.crud_sqlite_sem6.MainActivity">
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_graph" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DATOS DEL ARTÍCULO"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="26dp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:fontFamily="serif-monospace"
+        tools:ignore="RtlCompat" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="167dp"
+            android:background="#fff"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="162dp"
+                android:layout_height="122dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="80dp"
+                android:background="#fff"
+                android:src="@drawable/computadora" />
+
+            <EditText
+                android:id="@+id/et_codigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="lngrese el código"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:drawablePadding="10dp"
+                android:paddingLeft="15dp"
+                android:drawableStart="@drawable/codigo"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                tools:ignore="RtlCompat" />
+
+            <EditText
+                android:id="@+id/et_descripcion"
+                android:layout_width="329dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp"
+                android:drawablePadding="10dp"
+                android:textColor="#000"
+                android:drawableStart="@drawable/descrocion"
+                android:hint="lngrese la descripción del artículo"
+                android:paddingLeft="15dp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+
+            <EditText
+                android:id="@+id/et_precio"
+                android:layout_width="299dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="12dp"
+                android:hint="lngrese el precio del artículo"
+                android:inputType="numberDecimal"
+                android:textColor="#000"
+                android:paddingLeft="15dp"
+                android:drawablePadding="10dp"
+                android:textStyle="bold"
+                android:drawableStart="@drawable/precio"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_guardar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:text="Guardar"
+                android:onClick="alta"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:background="@drawable/button_estilos"
+
+                android:drawableEnd="@drawable/ic_save"
+                android:textColor="#000"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+
+            <Button
+                android:id="@+id/btn_consultar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Consultar por código"
+                android:onClick="consultaporcodigo"
+                android:drawableEnd="@drawable/ic_buscar"
+                android:background="@drawable/button_estilos"
+
+                android:textColor="#000"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_consultar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:text="Consultar por Descripción"
+                android:background="@drawable/button_estilos"
+
+                android:onClick="ConsultarDescripcion"
+                android:textColor="#000"
+                android:paddingLeft="30dp"
+                android:paddingRight="25dp"
+                android:drawableEnd="@drawable/descrocion"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_eliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="Borrar"
+                android:paddingLeft="45dp"
+                android:paddingRight="30dp"
+                android:onClick="bajaCodigo"
+                android:drawableEnd="@drawable/ic_borrar"
+                android:background="@drawable/button_estilos"
+
+                android:textColor="#000"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn_actualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Editar"
+                android:onClick="modificacion"
+                android:background="@drawable/button_estilos"
+                android:drawableEnd="@drawable/editar"
+                android:paddingLeft="40dp"
+                android:paddingRight="30dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
