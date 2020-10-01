@@ -1,16 +1,21 @@
 package com.example.crud_sqlite_sem6;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,10 +28,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText et_codigo, et_descripcion, et_precio;
-    private Button btn_guardar, btn_consultar1, btn_consultar2, btn_eliminar, btn_actualizar;
+    private Button btn_guardar, btn_consultar1, btn_consultar2, btn_eliminar, btn_actualizar, btn_csv;
     private TextView tv_resultado;
 
     private static final String TAG = "MainActivity";
@@ -98,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         btn_consultar2 = (Button) findViewById(R.id.btn_consultar2);
         btn_eliminar = (Button) findViewById(R.id.btn_eliminar);
         btn_actualizar = (Button) findViewById(R.id.btn_actualizar);
+        btn_csv = (Button) findViewById(R.id.btn_csv);
 
         String senal = "";
         String codigo = "";
@@ -122,6 +135,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        btn_csv.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Prueba de toast", Toast.LENGTH_SHORT).show();
+                // validamos si estan los permisos
+                if(CheckPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                    // si hay permisos entonces hacer el backup
+                    backupDatabae();
+                }else{
+                    // si no hay permisos entonces preguntarle al usuario que de los permisos
+                    requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_ASK_STORAGE);
+                }
+            }
+        });
     }
 
     private void confirmacion() {
@@ -306,6 +335,64 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             Toast.makeText(this, "No se han encontrado resultados para la busqueda especificada.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Codigo para hacer un backup
+
+    private final int REQUEST_CODE_ASK_STORAGE = 120;
+
+    private void requestPermissions(int requestCode, String[] permissions, int[] grantResults) {
+        if(REQUEST_CODE_ASK_STORAGE == requestCode) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //  Puedes mostrar un mensaje personalizado aqui
+            } else {
+                // De igualmanera si no aceptaron los permisos entonces mostrar otro mensaje
+            }
+        }else{
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+    }
+
+
+    private boolean CheckPermission(String permission){
+        int result = this.checkCallingOrSelfPermission(permission);
+        return result == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void backupDatabae(){
+        try{
+
+            File memoriaSd = Environment.getExternalStorageDirectory();
+
+            File datosBd = Environment.getDataDirectory();
+            String packageName = "com.example.appsqlite"; // este el id de la app
+            String sourceDBNAME = "administracion.db"; // el nombre de nuestra bd
+            String targeDBName = "Back-up"; // el nombre del backup
+            if(memoriaSd.canWrite()){
+                Date now = new Date(); // la fecha de hoy
+                //getPackageName()  prueba
+                String currentBDPath = "data/"+ getPackageName() + "/databases/" + sourceDBNAME; // Este es una forma para obtener las ruta y la bd
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm"); // para poner la fecha del backup
+                String backupBDPach = targeDBName + dateFormat.format(now) + ".db"; // renombramos BD
+
+                File currentBD = new File(datosBd, currentBDPath);
+                File backupBd = new File(memoriaSd, backupBDPach);
+                // Hasta aqui ya hice la copia de la BD ahora debemos de pasar esa copia a la SD
+                Toast.makeText(MainActivity.this, "Backup debe realizado ", Toast.LENGTH_SHORT).show();
+
+                Log.i("backup","backupDB=" + backupBd.getAbsolutePath());
+                Log.i("backup","sourceDB=" + currentBD.getAbsolutePath());
+
+                FileChannel src = new FileInputStream(currentBD).getChannel(); // ponemos el archivo en la ruta
+                FileChannel dst = new FileOutputStream(backupBd).getChannel(); // pasamos los datos al canal para luego enviarlo a la memoria
+                dst.transferFrom(src, 0, src.size()); // pasamos la bd copia a la memoria
+                src.close(); // cerramos la ruta
+                dst.close(); // cerramos los datos del backup
+            }
+        }catch (Exception e){
+            Toast.makeText(MainActivity.this, "Ah ocurrido un error "+e.toString(), Toast.LENGTH_LONG).show();
         }
     }
 

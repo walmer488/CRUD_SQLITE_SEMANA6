@@ -117,6 +117,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Consultar por código"
                 android:onClick="consultaporcodigo"
+                android:background="@drawable/editext"
                 android:textColor="#000"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
@@ -132,6 +133,7 @@
                 android:layout_marginRight="15dp"
                 android:text="Consultar por Descripción"
                 android:onClick="ConsultarDescripcion"
+                android:background="@drawable/editext"
                 android:textColor="#000"
                 android:paddingLeft="30dp"
                 android:paddingRight="25dp"
@@ -147,6 +149,7 @@
                 android:layout_marginTop="10dp"
                 android:text="Borrar"
                 android:paddingLeft="45dp"
+                android:background="@drawable/editext"
                 android:paddingRight="30dp"
                 android:onClick="bajaCodigo"
                 android:textColor="#000"
@@ -161,6 +164,7 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
+                android:background="@drawable/editext"
                 android:text="Editar"
                 android:onClick="modificacion"
                 android:paddingLeft="40dp"
@@ -169,6 +173,20 @@
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
 
+            <Button
+                android:id="@+id/btn_csv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/editext"
+                android:layout_marginBottom="15dp"
+                android:text="Crear Backup de Base de Datos"
+                android:paddingLeft="40dp"
+                android:paddingRight="30dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                tools:ignore="RtlCompat" />
 
         </LinearLayout>
     </ScrollView>
