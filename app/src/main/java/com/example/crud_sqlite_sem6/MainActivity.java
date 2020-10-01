@@ -163,11 +163,11 @@ public class MainActivity extends AppCompatActivity {
             Intent ListViewActivity = new Intent(MainActivity.this, list_view_articulos.class);
             startActivity(ListViewActivity);
             return true;
-        } else if (id == R.id.RecycleView) {
+        } /*else if (id == R.id.RecycleView) {
             //Intent ListViewActivity = new Intent(MainActivity.this, consulta_recyclerView.class);
             //startActivity(ListViewActivity);
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

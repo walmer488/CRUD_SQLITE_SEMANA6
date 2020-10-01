@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:background="#096"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.crud_sqlite_sem6.MainActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/tv"
@@ -40,12 +40,11 @@
 
 
             <ImageView
-                android:layout_width="162dp"
-                android:layout_height="122dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="144dp"
+                android:layout_height="98dp"
                 android:layout_marginLeft="80dp"
-                android:background="#fff"
-                android:src="@drawable/computadora" />
+                android:layout_marginTop="5dp"
+                android:background="#fff"/>
 
             <EditText
                 android:id="@+id/et_codigo"
@@ -57,7 +56,6 @@
                 android:textStyle="bold"
                 android:drawablePadding="10dp"
                 android:paddingLeft="15dp"
-                android:drawableStart="@drawable/codigo"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="15dp"
@@ -72,7 +70,6 @@
                 android:layout_marginRight="12dp"
                 android:drawablePadding="10dp"
                 android:textColor="#000"
-                android:drawableStart="@drawable/descrocion"
                 android:hint="lngrese la descripción del artículo"
                 android:paddingLeft="15dp"
                 android:textStyle="bold"
@@ -92,7 +89,6 @@
                 android:paddingLeft="15dp"
                 android:drawablePadding="10dp"
                 android:textStyle="bold"
-                android:drawableStart="@drawable/precio"
                 tools:ignore="RtlCompat" />
 
             <Button
@@ -103,12 +99,10 @@
                 android:layout_marginRight="15dp"
                 android:layout_marginTop="30dp"
                 android:text="Guardar"
+                android:background="@drawable/editext"
                 android:onClick="alta"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:background="@drawable/button_estilos"
-
-                android:drawableEnd="@drawable/ic_save"
                 android:textColor="#000"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
@@ -123,9 +117,6 @@
                 android:layout_marginTop="10dp"
                 android:text="Consultar por código"
                 android:onClick="consultaporcodigo"
-                android:drawableEnd="@drawable/ic_buscar"
-                android:background="@drawable/button_estilos"
-
                 android:textColor="#000"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
@@ -140,13 +131,10 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:text="Consultar por Descripción"
-                android:background="@drawable/button_estilos"
-
                 android:onClick="ConsultarDescripcion"
                 android:textColor="#000"
                 android:paddingLeft="30dp"
                 android:paddingRight="25dp"
-                android:drawableEnd="@drawable/descrocion"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
 
@@ -161,9 +149,6 @@
                 android:paddingLeft="45dp"
                 android:paddingRight="30dp"
                 android:onClick="bajaCodigo"
-                android:drawableEnd="@drawable/ic_borrar"
-                android:background="@drawable/button_estilos"
-
                 android:textColor="#000"
                 android:textStyle="bold"
                 tools:ignore="RtlCompat" />
@@ -178,8 +163,6 @@
                 android:layout_marginBottom="20dp"
                 android:text="Editar"
                 android:onClick="modificacion"
-                android:background="@drawable/button_estilos"
-                android:drawableEnd="@drawable/editar"
                 android:paddingLeft="40dp"
                 android:paddingRight="30dp"
                 android:textColor="#000"

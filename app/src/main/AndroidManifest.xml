@@ -9,9 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".detalle_articulos"></activity>
-        <activity android:name=".list_view_articulos" />
-        <activity android:name=".consulta_spinner" />
+        <activity android:name=".detalle_articulos">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".list_view_articulos">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".consulta_spinner">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

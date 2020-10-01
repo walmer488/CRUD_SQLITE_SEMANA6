@@ -384,7 +384,7 @@ public class ConexionSQLite extends SQLiteOpenHelper {
         return listaArticulos;
     }
 
-    public List<Dto> mostrarArticulos(){
+    /*public List<Dto> mostrarArticulos(){
         SQLiteDatabase bd = this.getReadableDatabase();
         Cursor cursor = bd.rawQuery("SELECT * FROM articulos order by codigo desc", null);
         List<Dto> articulos = new ArrayList<>();
@@ -396,5 +396,5 @@ public class ConexionSQLite extends SQLiteOpenHelper {
 
         }
         return articulos;
-    }
+    }*/
 }
