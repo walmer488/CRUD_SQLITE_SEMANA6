@@ -145,8 +145,10 @@
                             android:textColor="#000"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_search"
                             android:text="Resultado de la busqueda"
-                            android:padding="5dp"/>
+                            android:padding="5dp"
+                            tools:ignore="RtlCompat" />
 
                     </LinearLayout>
 

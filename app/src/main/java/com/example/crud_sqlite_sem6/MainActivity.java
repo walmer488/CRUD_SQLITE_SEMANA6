@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,7 +36,9 @@ import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+
+    FloatingActionMenu actionMenu;
 
     private EditText et_codigo, et_descripcion, et_precio;
     private Button btn_guardar, btn_consultar1, btn_consultar2, btn_eliminar, btn_actualizar, btn_csv;
@@ -90,17 +93,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 confirmacion();
+
             }
         });
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         et_codigo = (EditText) findViewById(R.id.et_codigo);
         et_descripcion = (EditText) findViewById(R.id.et_descripcion);
@@ -144,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
                 // validamos si estan los permisos
                 if(CheckPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                     // si hay permisos entonces hacer el backup
+                   // Toast.makeText(MainActivity.this, "bien hecho", Toast.LENGTH_SHORT).show();
+
                     backupDatabae();
                 }else{
                     // si no hay permisos entonces preguntarle al usuario que de los permisos
@@ -151,6 +150,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //Inicio de la Codificacion del menu flotante
+
+        actionMenu = findViewById(R.id.fabprincipal);
+        actionMenu.setClosedOnTouchOutside(true);
+
+        //final del menu flotante
     }
 
     private void confirmacion() {
@@ -394,6 +400,15 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(MainActivity.this, "Ah ocurrido un error "+e.toString(), Toast.LENGTH_LONG).show();
         }
+    }
+
+
+
+    public void Btn1(View view) {
+        Intent intent = new Intent (MainActivity.this, AcercaDe.class);
+        startActivity(intent);
+
+        Toast.makeText(this, "Acerca De", Toast.LENGTH_SHORT).show();
     }
 
 }

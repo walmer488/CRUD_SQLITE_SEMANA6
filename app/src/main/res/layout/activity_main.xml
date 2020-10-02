@@ -23,12 +23,23 @@
 
     <include layout="@layout/content_main" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabprincipal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@android:drawable/ic_dialog_email">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/boton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="Acerca De"
+            android:onClick="Btn1"
+            android:src="@drawable/acercade"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
