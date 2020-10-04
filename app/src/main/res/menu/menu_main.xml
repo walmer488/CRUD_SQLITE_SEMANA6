@@ -4,23 +4,23 @@
     tools:context="com.example.crud_sqlite_sem6.MainActivity">
     <item
         android:id="@+id/action_limpiar"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="Limpiar"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_listaArticulos"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="Buscar Artículos ya registrados"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_listaArticulos1"
-        android:orderInCategory="3"
+        android:orderInCategory="4"
         android:title="Lista de Artículos"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/RecycleView"
-        android:orderInCategory="4"
+        android:orderInCategory="5"
         android:title="RecycleView"
         app:showAsAction="never" />
 </menu>

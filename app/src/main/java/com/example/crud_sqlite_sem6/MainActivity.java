@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleMargin(0, 0, 0, 0);
-        toolbar.setTitle("walmerg Esteban Guido Martínez");
+        toolbar.setTitle("Walmer Esteban Guido Martínez");
         toolbar.setSubtitle("CRUD_SQLITE");
         setSupportActionBar(toolbar);
 

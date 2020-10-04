@@ -57,32 +57,5 @@ public class consulta_spinner extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_listaArticulos) {
-            Intent spinnerActivity = new Intent(this, consulta_spinner.class);
-            startActivity(spinnerActivity);
-            return true;
-        } else if (id == R.id.action_listaArticulos1) {
-            Intent ListViewActivity = new Intent(this, list_view_articulos.class);
-            startActivity(ListViewActivity);
-            return true;
-        } /*else if (id == R.id.RecycleView) {
-            //Intent ListViewActivity = new Intent(MainActivity.this, consulta_recyclerView.class);
-            //startActivity(ListViewActivity);
-            return true;
-        }*/
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }
