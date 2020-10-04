@@ -1,6 +1,7 @@
 package com.example.crud_sqlite_sem6;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -50,29 +51,34 @@ public class MainActivity extends AppCompatActivity{
     boolean input1 = false;
     int resultadolnsert = 0;
 
+    Modal ventanas = new Modal();
     ConexionSQLite conexion = new ConexionSQLite(this);
     Dto datos = new Dto();
-    AlertDialog.Builder dialogo;
 
-    @Override//1
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Warning")
-                    .setMessage("¿Realmente desea salir?");
-            dialogo.setNegativeButton(android.R.string.cancel, null);
-            dialogo.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-
-                @Override
-                public void onClick(DialogInterface dialogo, int which) {
-
-                }
-            });
-            dialogo.show();
-            return true;
+        if (keyCode==event.KEYCODE_BACK){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Warning");
+            builder.setCancelable(false);
+            builder.setMessage("¿Esta seguro que desea salir de la aplicación?")
+                    .setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
         }
+
+
         return super.onKeyDown(keyCode, event);
     }
 
@@ -83,19 +89,13 @@ public class MainActivity extends AppCompatActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleMargin(0, 0, 0, 0);
+        toolbar.setTitle("walmerg Esteban Guido Martínez");
         toolbar.setSubtitle("CRUD_SQLITE");
-        toolbar.setTitle("Walmer Esteban Guido Martínez");
+        setSupportActionBar(toolbar);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmacion();
-
-            }
-        });
 
 
 
@@ -159,19 +159,6 @@ public class MainActivity extends AppCompatActivity{
         //final del menu flotante
     }
 
-    private void confirmacion() {
-        String mensaje = "¿Realmente desea salir?";
-        dialogo = new AlertDialog.Builder(MainActivity.this);
-        dialogo.setTitle("Warning");
-        dialogo.setMessage(mensaje);
-        dialogo.setCancelable(false);
-        dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialogo, int id) {
-
-            }
-        });//Llave de cierre del metodo confirmación.
-        dialogo.show();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -198,11 +185,11 @@ public class MainActivity extends AppCompatActivity{
             Intent ListViewActivity = new Intent(MainActivity.this, list_view_articulos.class);
             startActivity(ListViewActivity);
             return true;
-        } /*else if (id == R.id.RecycleView) {
-            //Intent ListViewActivity = new Intent(MainActivity.this, consulta_recyclerView.class);
-            //startActivity(ListViewActivity);
+        } else if (id == R.id.RecycleView) {
+            Intent ListViewActivity = new Intent(MainActivity.this, consulta_recyclerView.class);
+            startActivity(ListViewActivity);
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected(item);
     }
